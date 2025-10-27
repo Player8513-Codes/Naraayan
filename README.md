@@ -1,4 +1,5 @@
-#This is the official Naraayan GitHub Repository
+
+This is the official Naraayan GitHub Repository
 > The code is hosted on naraayan.com
 >> ***DO NOT HOST THE SERVER YOURSELF***
 >> ***THIS CODE IS HOSTED FOR ACCESSABILITY***
@@ -11,4 +12,4 @@
 > If you require me to fix software issues:
 >> 1. Email naraayan.official@gmail.com directly.
 >> 2. Visit https://naraayan.com/contact.html and fill in the form.
-> They ***will*** contact me and I ***will*** get the issue sorted
+> They ***will*** contact me and I ***will*** get the issue sorted.
