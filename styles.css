@@ -14,9 +14,27 @@
 body {
     background: linear-gradient(135deg, var(--cosmic-purple), var(--cosmic-blue));
     color: #fff;
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     position: relative;
     min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.2px;
+}
+
+h1, h2 {
+    font-weight: 700;
+}
+
+h3 {
+    font-weight: 600;
 }
 
 /* Star animation background */
