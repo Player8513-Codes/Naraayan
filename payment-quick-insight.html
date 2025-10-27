@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Insight Consultation - Naraayan</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Additional styles for the payment page */
+      .form-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--star-white);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--star-white);
+        font-size: 1rem;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--mystic-gold);
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .payment-button-container {
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .payment-button {
+        background: linear-gradient(135deg, #002e5b, #00baf2);
+        color: white;
+        border: none;
+        padding: 1.2rem 2.5rem;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 186, 242, 0.3);
+      }
+
+      .payment-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 186, 242, 0.4);
+      }
+
+      .payment-button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .submit-button {
+        display: block;
+        width: 100%;
+        background: linear-gradient(135deg, var(--mystic-gold), #ffa500);
+        color: var(--cosmic-purple);
+        border: none;
+        padding: 1.2rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .submit-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      }
+
+      .submit-button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .package-info {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--mystic-gold);
+      }
+
+      .package-info h3 {
+        color: var(--mystic-gold);
+        margin-bottom: 0.5rem;
+      }
+
+      .package-info .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--mystic-gold);
+        margin: 0.5rem 0;
+      }
+
+      .success-message {
+        background: rgba(0, 255, 0, 0.1);
+        border: 1px solid rgba(0, 255, 0, 0.3);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        text-align: center;
+      }
+
+      .back-to-packages {
+        display: inline-block;
+        color: var(--mystic-gold);
+        text-decoration: none;
+        margin-top: 1rem;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+      }
+
+      .back-to-packages:hover {
+        text-decoration: underline;
+      }
+
+      .form-summary {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+        border-left: 4px solid var(--mystic-gold);
+      }
+
+      .form-summary h4 {
+        color: var(--mystic-gold);
+        margin-bottom: 1rem;
+      }
+
+      .summary-item {
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .summary-label {
+        font-weight: bold;
+      }
+
+      .qr-code-container {
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .qr-code-container img {
+        max-width: 250px;
+        border-radius: 10px;
+        border: 2px solid var(--mystic-gold);
+      }
+
+      .payment-instructions {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+        text-align: center;
+      }
+
+      .payment-instructions h4 {
+        color: var(--mystic-gold);
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <nav class="topnav">
+      <div class="logo">
+        <a href="index.html"><img src="/title.png" alt="Naraayan"/></a>
+      </div>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="consultation-packages.html">Packages</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <main class="content">
+      <div class="payment-container">
+        <h1>Complete Your Consultation Request</h1>
+
+        <!-- Package Information -->
+        <div class="package-info">
+          <h3>Quick Insight</h3>
+          <div class="price">₹499</div>
+          <p>
+            Short Lal Kitab chart overview with 3 core insights and 1 easy
+            home-based remedy
+          </p>
+        </div>
+
+        <!-- Consultation Form (shown first) -->
+        <div id="consultation-form" class="form-section">
+          <h2>Personal Details for Consultation</h2>
+          <p class="payment-message">
+            Please fill out the consultation form and complete your payment.
+          </p>
+
+          <form
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            id="astro-form"
+          >
+            <input
+              type="hidden"
+              name="access_key"
+              value="0bf56216-5638-493f-9228-9b2e6d8b92f7"
+            />
+            <input type="hidden" name="subject" value="New Form Submission for Quick Insight" />
+            <input type="checkbox" name="botcheck" style="display: none" />
+
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number:</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" name="dob" required />
+            </div>
+
+            <div class="form-group">
+              <label for="tob">Time of Birth</label>
+              <input type="time" id="tob" name="tob" required />
+            </div>
+
+            <div class="form-group">
+              <label for="pob">Place of Birth</label>
+              <input
+                type="text"
+                id="pob"
+                name="pob"
+                placeholder="City, State, Country"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="question"
+                >Specific Question or Concern (Optional)</label
+              >
+              <textarea
+                id="question"
+                name="question"
+                rows="4"
+                placeholder="If you have a specific question or concern, please mention it here..."
+              ></textarea>
+            </div>
+
+            <!-- PayTM QR Code -->
+            <div class="payment-instructions">
+              <h4>Complete Your Payment</h4>
+              <p>Scan the QR code below to pay ₹499 using PayTM</p>
+              <div class="qr-code-container">
+                <img src="paytm.png" alt="PayTM QR Code" />
+              </div>
+              <p>After payment, enter your Transaction ID below:</p>
+            </div>
+
+            <div class="form-group">
+              <label for="transaction_id">PayTM Transaction ID</label>
+              <input 
+                type="text" 
+                id="transaction_id" 
+                name="transaction_id" 
+                placeholder="Enter your PayTM Transaction ID" 
+                required 
+              />
+            </div>
+
+            <button type="submit" class="submit-button">
+              Submit Consultation Request
+            </button>
+          </form>
+
+          <a href="consultation-packages.html" class="back-to-packages"
+            >← Back to All Packages</a
+          >
+        </div>
+
+        <!-- Success Section (initially hidden) -->
+        <div id="success-section" class="form-section" style="display: none">
+          <h2>Consultation Request Complete!</h2>
+
+          <div class="success-message">
+            Thank you! Your consultation request has been submitted successfully.
+          </div>
+
+          <p>
+            We will process your Quick Insight consultation and deliver it
+            within 12 hours.
+          </p>
+          <p>You will receive your reading via WhatsApp or email text reply.</p>
+
+          <div class="payment-button-container">
+            <a
+              href="consultation-packages.html"
+              class="submit-button"
+              style="
+                text-decoration: none;
+                display: inline-block;
+                width: auto;
+                padding: 1rem 2rem;
+              "
+            >
+              Back to Packages
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const consultationForm = document.getElementById("consultation-form");
+        const successSection = document.getElementById("success-section");
+        const astroForm = document.getElementById("astro-form");
+
+        // Always show form first
+        consultationForm.style.display = "block";
+        successSection.style.display = "none";
+
+        // Handle form submission
+        astroForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const submitButton = astroForm.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            // Submit to Web3Forms
+            const formData = new FormData(astroForm);
+            
+            fetch(astroForm.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success section
+                    consultationForm.style.display = "none";
+                    successSection.style.display = "block";
+                } else {
+                    throw new Error(data.message || 'Form submission failed');
+                }
+            })
+            .catch(error => {
+                alert('Error submitting form: ' + error.message);
+                console.error('Form submission error:', error);
+            })
+            .finally(() => {
+                // Reset button
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
